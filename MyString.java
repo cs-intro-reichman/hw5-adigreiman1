@@ -7,8 +7,28 @@ public class MyString {
         System.out.println(countChar(hello, 'h'));
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
+
         System.out.println(spacedString(hello));
-        //// Put your other tests here.
+
+        System.out.println( subsetOf("spa","space")); // true
+        System.out.println( subsetOf("pass","space")); // false
+        System.out.println( subsetOf("c","space")); // true
+        System.out.println( subsetOf("sp","space")); // true
+
+        System.out.println( randomStringOfLetters(5));
+        System.out.println( randomStringOfLetters(1));
+        System.out.println( randomStringOfLetters(10));
+
+
+        System.out.println( remove("abcdef","bcf")); // ade
+        System.out.println( remove("hello","eo")); // hll
+        System.out.println( remove("committee","meet")); // "comit" 
+
+
+        System.out.println(insertRandomly('s',"cat"));
+        System.out.println(insertRandomly('p',"adi"));
+        System.out.println(insertRandomly('m',"roy"));
+       
     }
 
     /**
@@ -20,9 +40,17 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int counter =0;
+        for (int i=0; i< str.length(); i++){
+           if(str.charAt(i)==ch){
+            counter++;
+           }
+
+        }
+
+        return counter;
     }
+
 
     /** Returns true if str1 is a subset string str2, false otherwise
      *  Examples:
@@ -36,8 +64,26 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+         if (str1.length()>str2.length()){
+            return false;
+        }
+        if (str1.length()==0){
+            return true;
+        }
+       for (int i=0; i<str2.length(); i++){
+                for (int j=0; j<str1.length(); j++){
+                    if (j+i <=str2.length()){
+                        if (str2.charAt(j+i)!= str1.charAt(j)){
+                            break;
+                        }
+                        if (j== str1.length()-1){
+                            return true;
+                        }
+                    }   
+                }
+            }
+   
+            return false;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -48,10 +94,19 @@ public class MyString {
      * @param str - a string
      * @return a string consisting of the characters of str, separated by spaces.
      */
+    
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        String withSpaceStr = "";
+       for (int i=0; i<str.length();i++){
+        if (i==str.length()){
+
+            withSpaceStr += str.charAt(i);
+        }
+        withSpaceStr += str.charAt(i) + " ";
+       }
+        return withSpaceStr;
     }
+  
   
     /**
      * Returns a string of n lowercase letters, selected randomly from 
@@ -64,9 +119,17 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        String randomWord = "";
+        String letters = "abcdefghijklmnopqrstuvwxyz";  
+        
+
+        for (int j=0; j<n;j++){
+            int randomIndex = (int)(Math.random() * letters.length());
+            randomWord += letters.charAt(randomIndex);
+            
     }
+    return randomWord;
+}
 
     /**
      * Returns a string consisting of the string str1, minus all the characters in the
@@ -78,8 +141,15 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        for (int j=0; j<str2.length();j++){
+            for (int i=0; i<str1.length();i++){
+                if(str2.charAt(j)==str1.charAt(i)){
+                     str1= str1.substring(0,i) + str1.substring(i+1);
+                        break;
+                }
+            }
+        }
+            return str1;
     }
 
     /**
