@@ -102,17 +102,17 @@ public class MyString {
      */
     
     public static String spacedString(String str) {
-        String withSpaceStr = "";
-       for (int i=0; i<str.length();i++){
-        if (i==str.length()){
-
-            withSpaceStr += str.charAt(i);
+        
+    String withSpaceStr = "";
+    for (int i = 0; i < str.length(); i++) {
+       
+        withSpaceStr += str.charAt(i);
+        if (i < str.length() - 1) {
+            withSpaceStr += " ";
         }
-        withSpaceStr += str.charAt(i) + " ";
-       }
-        return withSpaceStr;
     }
-  
+    return withSpaceStr;
+}
   
     /**
      * Returns a string of n lowercase letters, selected randomly from 
