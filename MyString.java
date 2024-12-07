@@ -10,6 +10,7 @@ public class MyString {
 
         System.out.println(spacedString(hello));
 
+
         System.out.println( subsetOf("spa","space")); // true
         System.out.println( subsetOf("pass","space")); // false
         System.out.println( subsetOf("c","space")); // true
@@ -70,20 +71,25 @@ public class MyString {
         if (str1.length()==0){
             return true;
         }
-       for (int i=0; i<str2.length(); i++){
-                for (int j=0; j<str1.length(); j++){
-                    if (j+i <=str2.length()){
-                        if (str2.charAt(j+i)!= str1.charAt(j)){
+       for (int i=0; i<str1.length(); i++){
+        boolean match = false;
+
+                for (int j=0; j<str2.length(); j++){
+                   
+                        if (str1.charAt(i)==str2.charAt(j)){
+                            match = true;
+                            str2 = str2.substring(0, j) + str2.substring(j+1);
                             break;
+                           
                         }
-                        if (j== str1.length()-1){
-                            return true;
-                        }
-                    }   
-                }
+                    } 
+                    if (!match)  {
+                        return false;
+                    }
+                
             }
    
-            return false;
+            return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
