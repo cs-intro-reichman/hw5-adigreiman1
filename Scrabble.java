@@ -1,6 +1,7 @@
 /*
  * RUNI version of the Scrabble game.
  */
+
 public class Scrabble {
 
 	// Note 1: "Class variables", like the five class-level variables declared below,
@@ -48,7 +49,12 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+		word = word.toLowerCase();
+		for (int i=0; i< DICTIONARY.length; i++){
+			if (DICTIONARY[i]== word){
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -56,16 +62,70 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		int wordScore =0;
+
+		for (int i=0; i<word.length(); i++){
+			int charIndex= word.charAt(i) -'a';	
+				wordScore += SCRABBLE_LETTER_VALUES[charIndex];
+		}
+
+		if (word.length() == HAND_SIZE){
+			wordScore+=50;
+		}
+
+		String runi = "runi";
+		Boolean isRuni = true;
+
+			if (word.length()<3){
+				isRuni= f;
+			}
+			
+		   for (int i=0; i<word.length(); i++){
+				if (word.charAt(i)!='r'|| word.charAt(i)!='u'||word.charAt(i)!='n'||word.charAt(i)!='i'){
+					break;
+				}
+				for (int i=0; i<word.length(); i++){
+						boolean match = false;
+							for (int j=0; j<runi.length(); j++){
+								if (word.charAt(i)==runi.charAt(j)){
+									match = true;
+									runi = runi.substring(0, j) + str2.substring(j+1);
+									break;
+								
+								
+								
+								}
+							}
+							if (!match){
+								isRuni= false;
+							}
+						}   
+					}
+			
+				if(isRuni){
+					wordScore+=1000;
+				}			   
+		
+	
+			
+		}
+		return wordScore;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String randomWord = "";
+        String letters = "abcdefghijklmnopqrstuvwxyz";  
+
+        for (int j=0; j<HAND_SIZE - 2;j++){
+            int randomIndex = (int)(Math.random() * letters.length());
+            randomWord += letters.charAt(randomIndex);
+            
+    }
+		randomWord += 'a'+'e';
+    return randomWord;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
